@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "my-app"
+version = "0.1.0"
+description = ""
+authors = ["Andre Araujo <andre.araujosilva2006@gm6@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^3.0.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
