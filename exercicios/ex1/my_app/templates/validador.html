@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Validador
+{% endblock %}
+
+{% block title_content %}
+    Validar {{ name }}
+{% endblock %}
+
+{% block content %}
+    <form action="/resultado/{{ name }}" method="POST">
+        <input type="text" name="{{ name }}-form" id="{{ name }}-form">
+        <button type="submit">Validar</button>
+    </form>
+{% endblock %}
