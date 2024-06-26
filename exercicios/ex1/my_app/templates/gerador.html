@@ -9,5 +9,8 @@
 {% endblock %}
 
 {% block content %}
-    <p> {{ name }}: {{ cod }} </p>
+    <div class="generate-button">
+        <p id="cod-text"> {{ name }}: {{ cod }}  </p>
+        <button class="copy" type="button" id="copy-button"></button>
+    </div>
 {% endblock %}

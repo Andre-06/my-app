@@ -10,7 +10,7 @@
 
 {% block content %}
     <form action="/resultado/{{ name }}" method="POST">
-        <input type="text" name="{{ name }}-form" id="{{ name }}-form">
+        <input type="text" name="{{ name }}-form" id="{{ name }}-form" placeholder="Insira o {{ name }}">
         <button type="submit">Validar</button>
     </form>
 {% endblock %}
