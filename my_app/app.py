@@ -1,54 +1,82 @@
 from flask import Flask, render_template, request, redirect, url_for
+from .models import Character, Item
 
 app = Flask(__name__)
 
 
-produtos_list = [
-        {"nome": "Coca-Cola", "descricao": "bom", "preco": 10, "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlm3PvdCPBSqkzNhPIKGYv_8kyrn21DwcIxA&s"},
-        {"nome": "Pepsi", "descricao": "medio", "preco": 5, "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSluZmJ401G7ReB_baCN175fFPlh5nPgVqVHA&s"},
-        {"nome": "Doritos", "descricao": "Suja a mao", "preco": 400, "img": "https://avatars.githubusercontent.com/u/6484812?v=4"}
-]
-
-@app.route("/")
+@app.route("/", methods=["POST", "GET"])
 def home():
-    return render_template("home.html")
+    if request.method == "POST":
+        name = request.form["nome"]
+        ability = int(request.form["habilidade"])
+        classes = request.form.get("classe")
+        life = ability * 5
+
+        character = Character(0, name, ability, life, classes)
+        character.save()
+
+        request.close()
+
+        return redirect(url_for("home"))
+
+    characters = Character.objects()
+    return render_template("home.html", characters=characters)
 
 
-
-@app.route("/produtos")
-def produtos():
-    return render_template("produtos.html", produtos=produtos_list)
-
-
-@app.route("/produtos/<nome>")
-def produto(nome):
-    for produto in produtos_list:
-        if produto["nome"] == nome:
-            return render_template("produto.html", produto=produto)
-    else:
-        return "produto nao encontrado"
+@app.route("/novo-personagem")
+def novo_personagem():
+    return render_template("novo-personagem.html")
 
 
-@app.route("/produtos/cadastro")
-def cadastro():
-    return render_template("cadastro-produto.html")
+@app.route("/personagem/<id_personagem>/<edit>", methods=["POST", "GET"])
+def personagem(id_personagem, edit):
+    characters = Character.objects()
+    character = [c for c in characters if c.id_character == int(id_personagem)][0]
+    item_list = [item for item in Item.objects() if item.character_id == character.id_character]
+
+    if request.method == "POST":
+        if request.form.get("habilidade"):
+            character.name = request.form["nome"]
+            character.ability = int(request.form["habilidade"])
+            character.classes = request.form.get("classe")
+            character.life = character.ability * 5
+
+            character.save()
+            return redirect(f"/personagem/{character.id_character}/check")
+
+        else:
+            name = request.form["nome"]
+            damage = request.form["dano"]
+            critic = request.form.get("critico")
+            description = request.form.get("descricao")
+
+            item = Item(0, int(id_personagem), name, damage, critic, description)
+            item.save()
+
+            return redirect(f"/personagem/{character.id_character}/check")
+    if character:
+        return render_template("personagem.html",
+                               character=character,
+                               change='' if edit == 'edit' else 'disabled',
+                               edit='check' if edit == 'edit' else 'edit',
+                               visible=edit == 'check',
+                               method='GET' if edit == 'check' else 'POST',
+                               item_list= item_list)
 
 
-@app.route("/produtos", methods=['POST'])
-def cadastrar_produto():
-    nome = request.form["nome"]
-    descricao = request.form["descricao"]
-    preco = request.form["preco"]
-    img = request.form["img"]
+@app.route("/personagem/<id_personagem>/novo-item")
+def novo_item(id_personagem):
+    characters = Character.objects()
+    return render_template("novo-item.html", id_character=id_personagem)
 
-    produto = {"nome": nome, "descricao": descricao, 
-               "preco": preco, "img": img}
 
-    produtos_list.append(produto)
-
-    return redirect(url_for("produtos"))
-
-# um postman pra cada rota
-# adicionar preço e imagem
-# imagem em url
-
+@app.route("/remover/<model>/<id_model>")
+def remover(model, id_model):
+    if model == "personagem":
+        Character.exclude(id_model)
+        return redirect(url_for("home"))
+    if model == "item":
+        items = Item.objects()
+        item = [i for i in items if i.id_item == int(id_model)][0]
+        Item.exclude(id_model)
+        return redirect(f"/personagem/{item.character_id}/check")

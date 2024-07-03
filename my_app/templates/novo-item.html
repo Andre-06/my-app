@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Cadastrar Produto
+{% endblock %}
+
+{% block content %}
+
+    <nav>
+        <a href="/personagem/{{ id_character }}/check" class="icon-button go-back-icon"></a>
+    </nav>
+
+    <div class="title-content">
+        <h1>Cadastro de Item</h1>
+    </div>
+    <section class="section-content">
+        <form action="/personagem/{{ id_character }}/check" method="POST">
+            <fieldset>
+                <label for="nome">Nome do Item:</label>
+                <input type="text" name="nome" id="nome" placeholder="Novo item">
+                <div class="group-form">
+                    <fieldset>
+                        <label for="dano">Dano:</label>
+                        <input type="text" name="dano" id="dano" placeholder="Dano se houver">
+                    </fieldset>
+
+                    <fieldset>
+                        <label for="critico">Crítico:</label>
+                        <input type="text" name="critico" class="invisible-input" id="critico" value="x2">
+                        <select id="critico">
+                            <option value="x2">x2</option>
+                            <option value="x3">x3</option>
+                            <option value="cheio">cheio</option>
+                        </select>
+                    </fieldset>
+                </div>
+
+                <label for="descricao">Descrição:</label>
+                <textarea cols="30" rows="10" id="descricao" name="descricao"></textarea>
+
+            </fieldset>
+            <button type="submit" class="button">Cadastrar</button>
+        </form>
+    </section>
+{% endblock %}

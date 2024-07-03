@@ -9,12 +9,13 @@
 </head>
 <body>
     <nav>
-        <a href="/">Home</a>
-        <a href="/produtos">Produtos</a>
-        <a href="/produtos/cadastro">Cadastro</a>
+        <a href="/" class="icon-button go-back-icon"></a>
     </nav>
-    
-    {% block content %}
-    {% endblock %}
+    <div class="main-content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

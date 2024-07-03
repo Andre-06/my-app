@@ -1,0 +1,422 @@
+:root {
+    --color-primary: #A347FF;
+    --color-secondary: #7000AC;
+    --color-smoky-black: #121212;
+    --color-light-black: #1F1F1F;
+    --color-black: #0a0a0a;
+    --color-dark-gray: #1E1E1E;
+    --color-white: #fff;
+    --color-gray: rgba(255, 255, 255, .1);
+    --color-off-white: rgba(255, 255, 255, .6);
+    --color-red: #d9534f;
+    --color-green: #3d8b40;
+    --life-value: '';
+}
+
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: var(--color-smoky-black);
+    color: var(--color-white);
+    font-family: sans-serif;
+    min-height: 100vh;
+}
+
+.subtitle-color {
+    color: var(--color-off-white);
+}
+
+.withe-off-color {
+    color: var(--color-off-white);
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 3% auto 1rem;
+    border: 3px solid var(--color-primary);
+    padding: 2rem 5rem;
+    min-height: 70vh;
+    width: 900px;
+    border-radius: 1rem;
+    box-shadow: 0 0 .8rem var(--color-secondary);
+    position: relative;
+}
+
+.section-content {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.card-character {
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.card:hover {
+    box-shadow: 0 0 .3rem var(--color-white);
+}
+
+.card:active {
+    transform: scale(0.95);
+}
+
+.title-content {
+    display: flex;
+    align-items: end;
+    justify-content: space-around;
+    gap: 2rem;
+}
+
+.a-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: 1px solid var(--color-off-white);
+    padding: .3rem;
+    border-radius: .1rem;
+    text-decoration: none;
+    background-color: var(--color-gray);
+    transition: all 200ms ease-in-out;
+}
+
+.a-button:hover {
+    background-color: var(--color-off-white);
+    color: var(--color-white);
+    border-color: var(--color-white);
+}
+
+.a-button:active {
+    transform: scale(0.95);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+form fieldset input,
+form fieldset .group-form input{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid var(--color-white);
+    color: var(--color-white);
+    font-size: 1rem;
+}
+
+form fieldset input::placeholder{
+    color: var(--color-off-white);
+}
+
+form fieldset select {
+    font-size: 1rem;
+    padding: .2rem;
+    outline: none;
+    border: none;
+    background: transparent ;
+    color: white;
+
+    cursor: pointer;
+}
+
+form fieldset select:hover {
+    border: 1px solid var(--color-primary);
+}
+
+form fieldset select option{
+    background-color: var(--color-dark-gray);
+    color: var(--color-white);
+}
+
+form fieldset {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    gap: 5px;
+    min-width: 20rem;
+    margin-bottom: 1rem;
+}
+
+form fieldset label {
+    padding-top: 1rem;
+    padding-bottom: .5rem;
+}
+
+form textarea {
+    background-color: var(--color-dark-gray);
+    box-shadow: 0 0 .2rem var(--color-off-white);
+    padding: 1rem;
+    font-size: 1rem;
+    color: var(--color-white);
+}
+
+.button {
+    border: 1px solid var(--color-off-white);
+    padding: .3rem;
+    border-radius: .1rem;
+    text-decoration: none;
+    background-color: var(--color-primary);
+    transition: all 200ms ease-in-out;
+}
+
+.button:hover {
+    background-color: var(--color-off-white);
+    color: var(--color-white);
+    border-color: var(--color-white);
+}
+
+.inventory-card {
+    min-width: 100%;
+    border: 2px solid var(--color-off-white);
+    border-radius: 20px;
+    padding: 2rem 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: all 100ms ease-in-out;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+}
+
+
+.card-form {
+    border: 2px solid var(--color-off-white);
+    border-radius: 20px;
+    padding: 2rem 2rem 4rem;
+    display: flex;
+    gap: 3rem;
+    width: 100%;
+    transition: all 100ms ease-in-out;
+}
+
+.disable-form {
+    display: flex;
+    flex-flow: row;
+    gap: 3rem;
+    width: 100%;
+}
+
+.disable-form input {
+    text-align: center;
+}
+
+.disable-form .life-input {
+    appearance: none;
+    background-color: var(--color-red);
+    border-color: var(--color-smoky-black);
+    margin: .31rem;
+    position: relative;
+    width: 100%;
+}
+
+.life-input:after {
+    content: attr(value);
+    position: absolute;
+    right: 50%;
+    top: -.5rem;
+    transform: translate(50%, -100%);
+    color: var(--color-primary);
+}
+
+/*********** Baseline, reset styles ***********/
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Removes default focus */
+input[type="range"]:focus {
+  outline: none;
+}
+
+/******** Chrome, Safari, Opera and Edge Chromium styles ********/
+/* slider track */
+input[type="range"]::-webkit-slider-runnable-track {
+  background-color: #ee1717;
+  border-radius: 0.5rem;
+  height: 0.5rem;
+}
+
+/* slider thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  margin-top: -4px; /* Centers thumb on the track */
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  height: 1rem;
+  width: 1rem;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  outline: 3px solid #ffffff;
+  outline-offset: 0.125rem;
+}
+
+/*********** Firefox styles ***********/
+/* slider track */
+input[type="range"]::-moz-range-track {
+  background-color: #ee1717;
+  border-radius: 0.5rem;
+  height: 0.5rem;
+}
+
+/* slider thumb */
+input[type="range"]::-moz-range-thumb {
+  background-color: #ffffff;
+  border: none; /*Removes extra border that FF applies*/
+  border-radius: 0.5rem;
+  height: 1rem;
+  width: 1rem;
+}
+
+input[type="range"]:focus::-moz-range-thumb{
+  outline: 3px solid #ffffff;
+  outline-offset: 0.125rem;
+}
+
+.color-primary {
+    color: var(--color-primary);
+}
+
+.green-color {
+    color: var(--color-green);
+}
+
+.red-color {
+    color: var(--color-red);
+}
+
+.item-card {
+    background-color: #222;
+    border-radius: 8px;
+    padding: 20px;
+}
+.header {
+    display: flex;
+    align-items: center;
+    padding: 0 0 .5rem;
+}
+.header-icon {
+    width: 30px;
+    height: 30px;
+    background-color: var(--color-primary);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    margin-right: 10px;
+}
+.item-attributes {
+    border-top: 1px solid #444;
+    padding-top: 10px;
+}
+.attribute {
+    margin-bottom: 5px;
+}
+.buttons {
+    display: flex;
+    justify-content: right;
+    margin-top: 20px;
+}
+.buttons a {
+    border: none;
+    background-color: var(--color-gray);
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: .7rem;
+}
+
+.group-form {
+    display: flex;
+    gap: 2rem;
+}
+
+.invisible-input {
+    display: none;
+}
+
+.icon-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    text-decoration: none;
+
+    background-size: cover;
+    height: .9rem;
+    width: .9rem;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.garbage-icon {
+    background-image: url("../img/garbage-icon.png");
+}
+
+.edit-icon {
+    background-image: url("../img/edit-icon.png");
+}
+
+.check-icon {
+    background-image: url("../img/check-icon.png");
+    width: 1.2rem;
+    height: 1rem;
+}
+
+.card {
+    position: relative;
+    border: 2px solid var(--color-off-white);
+    border-radius: 20px;
+    padding: 2rem 2rem 3rem;
+    cursor: pointer;
+    transition: all 100ms ease-in-out;
+}
+
+.go-back-icon {
+    background-image: url("../img/go-back-icon.png");
+}
+
+.life-div {
+    width: 100%;
+    position: relative;
+}
+
+.back-life-button {
+    position: absolute;
+    right: 60%;
+    top: -.5rem;
+    transform: translate(50%, -75%);
+    font-size: 1.2rem;
+
+    cursor: pointer;
+}
+
+.front-life-button {
+    position: absolute;
+    right: 35%;
+    top: -.5rem;
+    transform: translate(0, -70%);
+    font-size: 1.2rem;
+
+    cursor: pointer;
+}

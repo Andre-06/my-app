@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Cadastrar Produto
+{% endblock %}
+
+{% block content %}
+    <div class="title-content">
+        <h1>Cadastro de Personagem</h1>
+    </div>
+    <section class="section-content">
+        <form action="/" method="POST">
+            <fieldset>
+                <label for="nome">Nome:</label>
+                <input type="text" name="nome" id="nome" placeholder="Novo personagem">
+
+                <label for="habilidade">Habilidade:</label>
+                <input type="number" name="habilidade" id="habilidade" min="8" max="20">
+
+                <label for="classe">Classe:</label>
+                <input type="text" name="classe" class="invisible-input" id="classe" value="Guerreiro">
+                <select id="classe" >
+                    <option value="Guerreiro">Guerreiro</option>
+                    <option value="Ladrão">Ladrão</option>
+                    <option value="Mago">Mago</option>
+                </select>
+            </fieldset>
+            <button type="submit" class="button">Cadastrar</button>
+        </form>
+    </section>
+{% endblock %}

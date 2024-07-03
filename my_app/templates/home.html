@@ -5,6 +5,27 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Home</h1>
-    <a href="/produtos">Produtos</a>
+    <a href="/novo-personagem"  class="withe-off-color a-button">
+        Novo Personagem
+    </a>
+    <div class="title-content">
+        <h1>Personagens</h1>
+    </div>
+    <section class="section-content">
+        {% for character in characters %}
+            <div class="card">
+                <a href="/remover/personagem/{{ character.id_character }}" class="icon-button garbage-icon"></a>
+                <a href="/personagem/{{ character.id_character }}/check" class="card-character">
+                    <h2>{{ character.name }}</h2>
+                    <p class="subtitle-color">{{ character.classes }}</p>
+                </a>
+            </div>
+        {% endfor %}
+        {% if characters == [] %}
+            <div class="card-character">
+                <h2>Nada ainda!</h2>
+                <p class="subtitle-color">Clique em "Novo Personagem" para criar seu primeiro personagem</p>
+            </div>
+        {% endif %}
+    </section>
 {% endblock %}
