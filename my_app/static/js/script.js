@@ -1,4 +1,9 @@
 (function (){
+    const uploadLifeBar = (lifeInput, damageBar) => {
+            lifeInput.setAttribute("value", lifeInput.value);
+            damageBar.style.left = (((lifeInput.value * 100) / lifeInput.max)).toString() + '%'
+    }
+
     const optionSelect = document.querySelector("select");
     const invisibleInput = document.querySelector(".invisible-input");
     if (invisibleInput && optionSelect) {
@@ -8,10 +13,10 @@
         })
     }
     const lifeInput = document.querySelector("#life");
+    const damageBar = document.querySelector(".damage-bar")
     if (lifeInput){
-        lifeInput.addEventListener("input", function(evt) {
-            console.log(lifeInput.value)
-            lifeInput.setAttribute("value", lifeInput.value);
+        lifeInput.addEventListener("input", function (evt){
+            uploadLifeBar(lifeInput, damageBar);
         });
     }
 
@@ -20,7 +25,8 @@
         backLifeButton.addEventListener("click", function (evt){
             evt.preventDefault()
             const lifeInput = document.querySelector("#life");
-            lifeInput.setAttribute("value", (Number.parseInt(lifeInput.value) - 1).toString())
+            lifeInput.value = (Number.parseInt(lifeInput.value) - 1).toString();
+            uploadLifeBar(lifeInput, damageBar)
         })
     }
 
@@ -29,7 +35,9 @@
         frontLifeButton.addEventListener("click", function (evt){
             evt.preventDefault()
             const lifeInput = document.querySelector("#life");
-            lifeInput.setAttribute("value", (Number.parseInt(lifeInput.value) + 1).toString())
+            uploadLifeBar(lifeInput, damageBar)
         })
     }
+
+
 })();
