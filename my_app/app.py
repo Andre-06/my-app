@@ -15,8 +15,6 @@ def home():
         character = Character(0, name, ability, life, classes)
         character.save()
 
-        request.close()
-
         return redirect(url_for("home"))
 
     characters = Character.objects()
@@ -54,6 +52,7 @@ def personagem(id_personagem, edit):
             item.save()
 
             return redirect(f"/personagem/{character.id_character}/check")
+
     if character:
         return render_template("personagem.html",
                                character=character,
@@ -61,7 +60,7 @@ def personagem(id_personagem, edit):
                                edit='check' if edit == 'edit' else 'edit',
                                visible=edit == 'check',
                                method='GET' if edit == 'check' else 'POST',
-                               item_list= item_list)
+                               item_list=item_list)
 
 
 @app.route("/personagem/<id_personagem>/novo-item")
