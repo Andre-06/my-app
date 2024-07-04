@@ -35,6 +35,7 @@
         frontLifeButton.addEventListener("click", function (evt){
             evt.preventDefault()
             const lifeInput = document.querySelector("#life");
+            lifeInput.value = (Number.parseInt(lifeInput.value) + 1).toString();
             uploadLifeBar(lifeInput, damageBar)
         })
     }
