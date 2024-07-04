@@ -1,3 +1,5 @@
+from threading import Thread
+
 from flask import Flask, render_template, request, redirect, url_for
 from .models import Character, Item
 
@@ -79,3 +81,13 @@ def remover(model, id_model):
         item = [i for i in items if i.id_item == int(id_model)][0]
         Item.exclude(id_model)
         return redirect(f"/personagem/{item.character_id}/check")
+
+
+def run():
+    app.run(host='0.0.0.0', port=5050)
+
+
+if __name__ == '__main__':
+    t = Thread(target=run)
+    t.start()
+
