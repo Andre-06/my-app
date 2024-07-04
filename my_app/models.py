@@ -10,13 +10,13 @@ class Character:
 
     def save(self) -> int:
         if self.id_character == 0:
-            with open(self.filename, "a") as file:
+            with open(self.filename, "a", encoding='latin-1') as file:
                 objects = self.objects()
                 id_character = 1 if not objects else objects[-1].id_character + 1
                 self.id_character = id_character
                 file.write(str(self))
         else:
-            with open(self.filename, "r+") as file:
+            with open(self.filename, "r+", encoding='latin-1') as file:
                 readline = file.readlines()
                 new_lines = [str(self) if line.startswith(str(self.id_character)) else line for line in readline]
                 file.seek(0)
@@ -27,7 +27,7 @@ class Character:
 
     @staticmethod
     def objects() -> list:
-        with open("my_app/tables/characters.csv", "r") as file:
+        with open("my_app/tables/characters.csv", "r", encoding='latin-1') as file:
             list_characters = []
             for line in file:
                 id_character, name, ability, life, classes = line.strip().split(",")
@@ -37,7 +37,7 @@ class Character:
 
     @staticmethod
     def exclude(id_character):
-        with open("my_app/tables/characters.csv", "r+") as file:
+        with open("my_app/tables/characters.csv", "r+", encoding='latin-1') as file:
             readline = file.readlines()
             new_lines = [line for line in readline if not line.startswith(id_character)]
             file.seek(0)
@@ -62,13 +62,13 @@ class Item:
 
     def save(self) -> int:
         if self.id_item == 0:
-            with open(self.filename, "a") as file:
+            with open(self.filename, "a", encoding='latin-1') as file:
                 objects = self.objects()
                 id_item = 1 if not objects else objects[-1].id_item + 1
                 self.id_item = id_item
                 file.write(str(self))
         else:
-            with open(self.filename, "r+") as file:
+            with open(self.filename, "r+", encoding='latin-1') as file:
                 readline = file.readlines()
                 new_lines = [str(self) if line.startswith(str(self.id_item)) else line for line in readline]
                 file.seek(0)
@@ -79,7 +79,7 @@ class Item:
 
     @staticmethod
     def objects() -> list:
-        with open("my_app/tables/items.csv", "r") as file:
+        with open("my_app/tables/items.csv", "r", encoding='latin-1') as file:
             list_items = []
             for line in file:
                 id_item, character_id, name, damage, critic, description = line.strip().split(",")
@@ -89,7 +89,7 @@ class Item:
 
     @staticmethod
     def exclude(id_item):
-        with open("my_app/tables/items.csv", "r+") as file:
+        with open("my_app/tables/items.csv", "r+", encoding='latin-1') as file:
             readline = file.readlines()
             new_lines = [line for line in readline if not line.startswith(id_item)]
             file.seek(0)
