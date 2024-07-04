@@ -1,7 +1,7 @@
 from threading import Thread
 
 from flask import Flask, render_template, request, redirect, url_for
-from .models import Character, Item
+from models import Character, Item
 
 app = Flask(__name__)
 
